@@ -38,12 +38,26 @@
 ;; Get rid of overwrite-mode, this one is far more useful
 (global-set-key [rebind overwrite-mode] 'copy-from-above-command)
 
+(defconst ar-c-style
+  '((c-basic-offset . 4)
+    (c-offsets-alist . ((inlambda . 0 )
+                        (innamespace . 0)
+                        (inline-open . 0)
+                        (substatement-open . 0)
+                        (arglist-cont-nonempty . +)
+                        ))
+    )
+  "My C++ Indentation Style")
+
 (defun my-c-initialization-hook ()
   ;; this hook runs after init-c bindings
   (bind-keys :map c-mode-base-map
     ("<f12>" . projectile-compile-project)
     ("C-<f12>" . projectile-test-project)
     ("M-C-<f12>" . recompile))
+
+  (c-add-style "ar" ar-c-style)
+  (setq c-default-style "ar")
   )
 (add-hook 'c-initialization-hook 'my-c-initialization-hook)
 
