@@ -40,6 +40,10 @@
 
 (defun my-c-initialization-hook ()
   ;; this hook runs after init-c bindings
+  (bind-keys :map c-mode-base-map
+    ("<f12>" . projectile-compile-project)
+    ("C-<f12>" . projectile-test-project)
+    ("M-C-<f12>" . recompile))
   )
 (add-hook 'c-initialization-hook 'my-c-initialization-hook)
 
