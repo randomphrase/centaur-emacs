@@ -54,6 +54,13 @@
   ;; Live Coding in Python
   (use-package live-py-mode))
 
+;; use pyvenv mode to activate python venvs
+(use-package auto-virtualenv
+  :hook
+  (python-mode . auto-virtualenv-set-virtualenv)
+  (projectile-after-switch-project . auto-virtualenv-set-virtualenv)
+  :init (use-package pyvenv))
+
 (provide 'init-python)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
