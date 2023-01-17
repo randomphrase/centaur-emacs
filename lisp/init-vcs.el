@@ -91,6 +91,11 @@
       (transient-append-suffix 'magit-status-jump '(0 0 -1)
         '("t " "Todos" magit-todos-jump-to-todos)))))
 
+;; Use delta to highlight diffs, if available
+(use-package magit-delta
+  :if (executable-find "delta")
+  :hook (magit-mode . magit-delta-mode))
+
 ;; Display transient in child frame
 (when (childframe-completion-workable-p)
   (use-package transient-posframe
